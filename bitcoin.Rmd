@@ -1,34 +1,8 @@
 ---
 title: "Predicting bitcoin opening price"
-
 output:
   html_document:
-    toc: true
-    toc_float: true
-    includes:
-      in_header: 
-        header.html
-navbar:
-  title: "Home"
-  left:
-    - text: "About Me"
-      href: about_me.html
-    - text: "Portfolio"
-      menu:
-        - text: "Classifying wine quality"
-          href: wine-classification.html
-        - text: "Predicting bitcoin value"
-          href: bitcoin.html
-        - text: "Visualizing IMDB ratings"
-          href: imdb.html
-    - text: "Contact Me"
-      menu:
-        - text: "jsteven.raquel8@gmail.com"
-          href: mailto:jsteven.raquel8@gmail.com
-        - text: "GitHub"
-          href: https://github.com/jstevenr
-        - text: "LinkedIn"
-          href: https://www.linkedin.com/in/jstevenr/
+    df_print: paged
 ---
 
 This was my final project for PSTAT 174, Time Series, Fall 2017. 
