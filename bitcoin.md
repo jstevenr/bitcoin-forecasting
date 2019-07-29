@@ -441,13 +441,13 @@ par(mfrow = c(1,1))
 plot.ts(resids010, main = "ARIMA(0,1,0) Residuals")
 ```
 
-![](bitcoin_files/figure-markdown_github/spec.arma%20and%20plot.roots-1.png)
+![](bitcoin_files/figure-markdown_github/spec.arma_and_plot.roots-1.png)
 
 ``` r
 plot.ts(resids210, main = "ARIMA(2,1,0) Residuals")
 ```
 
-![](bitcoin_files/figure-markdown_github/spec.arma%20and%20plot.roots-2.png)
+![](bitcoin_files/figure-markdown_github/spec.arma_and_plot.roots-2.png)
 
 ``` r
 # QQ-plots of residuals
@@ -458,7 +458,7 @@ qqnorm(resids210, main = "Standardized Residuals of ARIMA(2,1,0)")
 qqline(resids210)
 ```
 
-![](bitcoin_files/figure-markdown_github/spec.arma%20and%20plot.roots-3.png)
+![](bitcoin_files/figure-markdown_github/spec.arma_and_plot.roots-3.png)
 
 ``` r
 # ACF of residuals
@@ -467,7 +467,7 @@ Acf(resids010, main = "ARIMA(0,1,0) Residuals' ACF")
 Acf(resids210, main = "ARIMA(2,1,0) Residuals' ACF")
 ```
 
-![](bitcoin_files/figure-markdown_github/spec.arma%20and%20plot.roots-4.png)
+![](bitcoin_files/figure-markdown_github/spec.arma_and_plot.roots-4.png)
 
 ``` r
 # ACF of squared residuals
@@ -477,4 +477,4 @@ Acf(resids010^2, main = "ARIMA(0,1,0) Squared Residuals' ACF")
 Acf(resids210^2, main = "ARIMA(2,1,0) Squared Residuals' ACF")
 ```
 
-![](bitcoin_files/figure-markdown_github/spec.arma%20and%20plot.roots-5.png)
+![](bitcoin_files/figure-markdown_github/spec.arma_and_plot.roots-5.png)

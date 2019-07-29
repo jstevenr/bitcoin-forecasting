@@ -321,7 +321,7 @@ Metcalfe, Andrew V., and Paul S.P. Cowpertwait. Introductory Time Series with R.
 
 # Appendix
 
-```{r, spec.arma and plot.roots}
+```{r, spec.arma_and_plot.roots}
 # pretty much all code is included in the body of the report
 fit210$coef[1:2] # the 2 AR coefficients
 par(mfrow = c(1,1))
