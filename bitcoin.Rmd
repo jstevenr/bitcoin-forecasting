@@ -1,8 +1,7 @@
 ---
 title: "Predicting bitcoin opening price"
 output:
-  html_document:
-    df_print: paged
+  github_document
 ---
 
 This was my final project for PSTAT 174, Time Series, Fall 2017. 
@@ -37,7 +36,7 @@ This dataset is the opening price of the cryptocurrency bitcoin for 366 days, fr
 
 To first analyze the dataset, I want to read in the data and then plot its time series. The data is organized to where the values are the top are the most recent, and those at the bottom are the oldest, so I will have to reverse this. I'm going to subset the data to a certain range in the middle so that I can compare my forecasting with actual existing data. After doing this, I will plot the series along a trend line or 'line of best fit'. 
 
-```{r, initial plot}
+```{r, initial_plot}
 set.seed(100)
 bitcoin <- read.csv("bitcoin_price.csv")
 data <- subset(bitcoin, select = c(Date, Open)) # selecting only opening price column
@@ -64,7 +63,7 @@ The _autocorrelation_ of data, represented by the function $\gamma_X$ for some d
 
 AR (auto-regressive) models depend on their past values, an error term, and sometimes a constant. MA (moving average) models depend linearly on the current and past values of white noise error terms (which is random). The combination of them, together with differencing, consitute the ARIMA model.
 
-```{r, ACF and PACF}
+```{r, ACF_and_PACF}
 par(mfrow = c(1,2))
 # library(forecast) is loaded
 Acf(open, main = "ACF of Original Data", lag.max = 50)
@@ -77,7 +76,7 @@ The ACF of the data decays gradually, whereas the PACF cuts off abruptly. There 
 
 We would like to begin by using the Box-Cox power transformation, which is a method that helps to Normalize data. This method finds a value $\lambda$ which maximizes the log-likelihood and then the data is raised to the power of $\lambda$. The higher the likelihood, the better (more likely) the model parameter. Power transformations such as the Box-Cox help to stabilize the variance which is imperative for Box-Jenkins modeling.
 
-```{r, finding best lambda}
+```{r, finding_best_lambda}
 par(mfrow = c(1,1))
 # library(MASS) is loaded
 bcTransform <- boxcox(open ~ as.numeric(1:length(open)))
@@ -88,7 +87,7 @@ best.lambda
 
 We see that the ideal value for $\lambda$ that maximizes the likelihood is $-0.020$, but the log function, $\lambda = 0$, is within the confidence interval so we can use this instead. Here we will apply the transformation, then compare the variances of our original data with the transformed data. 
 
-```{r, box-cox transformation}
+```{r, box_cox_transformation}
 # transforming the data
 open.tr <- log(open)
 # new time series plot
@@ -138,7 +137,7 @@ Note the inclusion of a 'drift' constant in the model. The `auto.arima()` functi
 
 We are given an ARIMA(0,1,0) model which is essentially a random walk. We can take a look at the ACF and PACF curves as well, and if there are virtually no lags at which either coefficient is significantly far from zero, then it would corroborate this conclusion since it would indicate there is no AR or MA order in the model of best fit. The inclusion of $d = 1$ in the auto-fitted model also tells us that differencing at lag 1 was the right decision.
 
-```{r, ACF-PACF of differenced data}
+```{r, ACF-PACF_of_differenced_data}
 par(mfrow = c(1,2))
 Acf(open.diff, main = "ACF of transformed data", lag.max = 50)
 Pacf(open.diff, main = "PACF of transformed data", lag.max = 50)

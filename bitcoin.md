@@ -41,7 +41,7 @@ abline(lm(open ~ as.numeric(1:length(open))), col = "red", lty = 2)
 legend("topleft", legend = "trend line", col = "red", lty = 2)
 ```
 
-![](bitcoin_files/figure-markdown_github/initial%20plot-1.png)
+![](bitcoin_files/figure-markdown_github/initial_plot-1.png)
 
 Trend, Seasonality and Sharp Changes
 ------------------------------------
@@ -64,7 +64,7 @@ Acf(open, main = "ACF of Original Data", lag.max = 50)
 Pacf(open, main = "PACF of Original Data", lag.max = 50)
 ```
 
-![](bitcoin_files/figure-markdown_github/ACF%20and%20PACF-1.png)
+![](bitcoin_files/figure-markdown_github/ACF_and_PACF-1.png)
 
 The ACF of the data decays gradually, whereas the PACF cuts off abruptly. There are a few significant lags of the PACF at 4, 5, and 10, after which point the values can be taken as just zero. The gradual decay of the ACF tells us that we should difference the data, which would also address the issue of the upward trend.
 
@@ -78,7 +78,7 @@ par(mfrow = c(1,1))
 bcTransform <- boxcox(open ~ as.numeric(1:length(open)))
 ```
 
-![](bitcoin_files/figure-markdown_github/finding%20best%20lambda-1.png)
+![](bitcoin_files/figure-markdown_github/finding_best_lambda-1.png)
 
 ``` r
 # value of lambda which maxes log-likelihood
@@ -99,7 +99,7 @@ plot.ts(open.tr, main = "Series after Box-Cox")
 abline(lm(open.tr ~ as.numeric(1:length(open.tr))), col = "red", lty = 2)
 ```
 
-![](bitcoin_files/figure-markdown_github/box-cox%20transformation-1.png)
+![](bitcoin_files/figure-markdown_github/box_cox_transformation-1.png)
 
 ``` r
 # comparing the variances of original and transformed data
@@ -183,7 +183,7 @@ Acf(open.diff, main = "ACF of transformed data", lag.max = 50)
 Pacf(open.diff, main = "PACF of transformed data", lag.max = 50)
 ```
 
-![](bitcoin_files/figure-markdown_github/ACF-PACF%20of%20differenced%20data-1.png)
+![](bitcoin_files/figure-markdown_github/ACF-PACF_of_differenced_data-1.png)
 
 The ACF at lag 1 is not significantly far form zero, so we don't difference further lest we overdifference the series.
 
